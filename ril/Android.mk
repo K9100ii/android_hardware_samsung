@@ -26,7 +26,10 @@ endif
 endif
 
 # ril client
-SECRIL_CLIENT_DIRS := libsecril-client libsecril-client-sap
+ifneq ($(TARGET_AUDIOHAL_VARIANT),)
+SECRIL_CLIENT_DIRS := libsecril-client
+endif
+SECRIL_CLIENT_DIRS += libsecril-client-sap
 include $(foreach client_dirs,$(SECRIL_CLIENT_DIRS),$(RIL_PATH)/$(client_dirs)/Android.mk)
 
 endif
